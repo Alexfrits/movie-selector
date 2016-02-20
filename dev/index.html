@@ -5,12 +5,38 @@
     <title>Super Easy Movie Selector</title>
   </head>
   <body>
+
   <form action="POST" id="search-form">
     <label for="searchbar">
       <input type="text" id="search-input" name="search-input" />
     </label>
     <button type="submit">SEARCH</button>
   </form>
+
+  <ul id="results">
+  <!-- result template -->
+    <li class="result">
+      <h3 class="title">{{ Title }}</h3>
+      <time datetime="{{ Year }}">{{ Year }}</time>
+      <img src="{{ Poster }}" alt="{{ Title + ' poster' }}" title="{{ Title + ' poster' }}">
+      <ul>
+        <li>By: '{{ Director }}'</li>
+        <li>Duration: {{ Runtime }}</li>
+        <li>With : {{ Actors }}</li>
+      </ul>
+      <p>{{ Plot }}</p>
+      <div>
+        <span>Ratings: </span>
+        <ul>
+          <li>Imdb: {{ imbdRating }}</li>
+          <li>Metascore: {{ Metascore }}</li>
+        </ul>
+      </div>
+    </li>
+
+  </ul>
+
+    <script type="text/javascript" src="js/modules/utils.js"></script>
     <script type="text/javascript" src="js/modules/proxy.js"></script>
     <script type="text/javascript" src="js/modules/dom-elements.js"></script>
     <script type="text/javascript" src="js/main.js"></script>

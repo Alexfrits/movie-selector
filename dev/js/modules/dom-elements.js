@@ -1,4 +1,4 @@
-var dom = (function () {
+var Dom = (function () {
   //SEARCH FORM
   var searchForm = document.getElementById('search-form');
   var searchInput = document.getElementById('search-input');

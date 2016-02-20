@@ -1,4 +1,4 @@
-var proxy = (function proxy () {
+var MovieProxy = (function proxy () {
 
   var baseURL = 'http://www.omdbapi.com/?';
   var queryMethod = {

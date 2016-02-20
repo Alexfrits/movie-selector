@@ -1,15 +1,13 @@
-/* global proxy, dom */
-(function (proxy, dom) {
-
-
-  dom.searchForm.addEventListener('submit', function (e) {
+/* global MovieProxy, Dom, Utils */
+(function (MovieProxy, Dom, Utils) {
+  Dom.searchForm.addEventListener('submit', function (e) {
     e.preventDefault();
 
-    var title = dom.searchInput.value.toString().trim();
+    var title = Dom.searchInput.value.toString().trim();
 
-    proxy.getMovieByTitle(title)
+    MovieProxy.getMovieByTitle(title)
       .then(function (resp) {
         // dom.setData(domElem, data);
       });
   });
-}(proxy, dom));
+}(MovieProxy, Dom, Utils));
