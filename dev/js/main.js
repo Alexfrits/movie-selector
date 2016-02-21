@@ -7,7 +7,8 @@
 
     MovieProxy.getMovieByTitle(title)
       .then(function (resp) {
-        // dom.setData(domElem, data);
+        Dom.setData();
+        console.log(resp);
       });
   });
 }(MovieProxy, Dom, Utils));
