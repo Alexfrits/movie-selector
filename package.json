@@ -1,0 +1,23 @@
+{
+  "name": "moive-selector",
+  "version": "0.0.1",
+  "description": "----",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev:server": "browser-sync start --server dev/ --files \"dev/**/*.html, dev/js/**/*.css, dev/js/**/*.js\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alexfrits/movie-selector.git"
+  },
+  "author": "Alexandre Frits",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Alexfrits/movie-selector/issues"
+  },
+  "homepage": "https://github.com/Alexfrits/movie-selector#readme",
+  "devDependencies": {
+    "browser-sync": "^2.11.1"
+  }
+}
