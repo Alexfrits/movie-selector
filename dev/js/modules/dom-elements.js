@@ -1,4 +1,6 @@
-var Dom = (function () {
+/* global Utils */
+
+var Dom = (function (Utils) {
   //SEARCH FORM
   var searchForm  = document.getElementById('search-form');
   var searchInput = document.getElementById('search-input');
@@ -8,17 +10,23 @@ var Dom = (function () {
 
   // METHODS
   /**
-   * populates a DOM element with the data received from the server
-   * @param {Object} domElement - either an existing DOM element or a newly created one
-   * @param {String} data       - the data received from the server
+   * Creates a sub-element and appends it to the parentElementpopulates a DOM element with the data received from the server
+   * @param {Object} parentElement - either an existing DOM element or a newly created one
+   * @param {Object} data          -
+   * @param {string} data.tagName  - a valid HTML tagName
+   * @param {string} data.content  - a valid HTML tagName
    */
-  function setData (domElement, data) {
-    console.log(document.createELement);
+  function setData (parentElement, data) {
+    var newElement = document.createElement(data.tag);
+    newElement.innerHTML = data.content;
+
+    parentElement.appendChild(newElement);
   }
 
   return {
     searchForm  : searchForm,
     searchInput : searchInput,
+    resultsList : resultsList,
     setData     : setData
   };
-}());
+}(Utils));

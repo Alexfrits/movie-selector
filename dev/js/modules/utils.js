@@ -6,7 +6,7 @@ var Utils = (function () {
    * @return {String}           - a time length in format 'XhXX'
    */
 
-  function toHour(timeInMin) {
+  function toHour (timeInMin) {
     var timeLength = parseInt(timeInMin.split(' ')[0]);
     var hours = (Math.floor(timeLength / 60));
     var minutes = ((timeLength % 60 < 10) ? '0' + (timeLength % 60) : (timeLength % 60));
@@ -14,7 +14,12 @@ var Utils = (function () {
     return hours + 'h' + minutes;
   }
 
+  function toString (data) {
+    return Object.prototype.toString(data);
+  }
+
   return {
-    toHour: toHour
+    toHour    : toHour,
+    toString  : toString
   };
 }());

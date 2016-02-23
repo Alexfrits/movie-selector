@@ -2,7 +2,8 @@ var MovieProxy = (function proxy () {
 
   var baseURL     = 'http://www.omdbapi.com/?';
   var queryMethod = {
-    title: 't='
+    title: 't=',
+    imdb: 'i='
   };
 
   /**
@@ -23,7 +24,32 @@ var MovieProxy = (function proxy () {
       });
   }
 
+  function getMovieByImdbId () {
+    // generating a random imdb id format ttXXXXXXX
+    var randId = function () {
+      var id = 'tt';
+
+      for (var i = 0; i < 7; i++) {
+        id += Math.floor(Math.random() * 10);
+      }
+      return id;
+    };
+
+    return fetch(baseURL + queryMethod.imdb + randId())
+      .then(function(resp) {
+        return resp.json();
+      })
+      .then(function(json) {
+        console.log(randId());
+        return json;
+      })
+      .catch(function(err) {
+        return err;
+      });
+  }
+
   return {
-    getMovieByTitle: getMovieByTitle
+    getMovieByTitle : getMovieByTitle,
+    getMovieByImdbId: getMovieByImdbId
   };
 }());
