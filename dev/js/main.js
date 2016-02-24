@@ -1,9 +1,9 @@
 /* global MovieProxy, Dom, Utils */
-(function (MovieProxy, Dom, Utils) {
+(function (MovieProxy, Dom, Utils) { // eslint-disable-line no-unused-vars
 
   window.addEventListener('load', function (e) {
     // Dom.setData(Dom.resultsList, );
-    MovieProxy.getMovieByImdbId().then(function(resp) {
+    MovieProxy.getMovieByImdbId(Utils.randId()).then(function(resp) {
       console.log(resp);
     });
   });

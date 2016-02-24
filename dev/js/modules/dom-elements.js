@@ -1,6 +1,5 @@
 /* global Utils */
-
-var Dom = (function (Utils) {
+var Dom = (function (Utils) { // eslint-disable-line no-unused-vars
   //SEARCH FORM
   var searchForm  = document.getElementById('search-form');
   var searchInput = document.getElementById('search-input');

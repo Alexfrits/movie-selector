@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/Alexfrits/movie-selector#readme",
   "devDependencies": {
-    "browser-sync": "^2.11.1"
+    "browser-sync": "^2.11.1",
+    "eslint": "^2.2.0",
+    "eslint-plugin-react": "^4.1.0"
   }
 }

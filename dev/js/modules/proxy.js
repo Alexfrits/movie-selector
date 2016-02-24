@@ -1,4 +1,4 @@
-var MovieProxy = (function proxy () {
+var MovieProxy = (function proxy () { // eslint-disable-line no-unused-vars
 
   var baseURL     = 'http://www.omdbapi.com/?';
   var queryMethod = {
@@ -24,23 +24,21 @@ var MovieProxy = (function proxy () {
       });
   }
 
-  function getMovieByImdbId () {
-    // generating a random imdb id format ttXXXXXXX
-    var randId = function () {
-      var id = 'tt';
 
-      for (var i = 0; i < 7; i++) {
-        id += Math.floor(Math.random() * 10);
-      }
-      return id;
-    };
 
-    return fetch(baseURL + queryMethod.imdb + randId())
+  /**
+   * Getting a movie by its IMDB ID
+   * @param  {String} imdbId  - an IMDB ID format ttXXXXXXX
+   * @return {Object} resp    - the movie object returned by the server
+   */
+  function getMovieByImdbId (imdbId) {
+
+    return fetch(baseURL + queryMethod.imdb + imdbId)
       .then(function(resp) {
         return resp.json();
       })
       .then(function(json) {
-        console.log(randId());
+        console.log(imdbId);
         return json;
       })
       .catch(function(err) {
