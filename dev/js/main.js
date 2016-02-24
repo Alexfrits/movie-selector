@@ -1,9 +1,10 @@
 /* global MovieProxy, Dom, Utils */
 (function (MovieProxy, Dom, Utils) { // eslint-disable-line no-unused-vars
 
+/*  INIT
+================================================================== */
   window.addEventListener('load', function (e) {
-    // Dom.setData(Dom.resultsList, );
-    MovieProxy.getMovieByImdbId(Utils.randId()).then(function(resp) {
+    MovieProxy.getRandomMovie(function(resp) {
       console.log(resp);
     });
   });

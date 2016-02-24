@@ -11,16 +11,16 @@ var Dom = (function (Utils) { // eslint-disable-line no-unused-vars
   /**
    * Creates a sub-element and appends it to the parentElementpopulates a DOM element with the data received from the server
    * @param {Object} parentElement - either an existing DOM element or a newly created one
-   * @param {Object} data          -
-   * @param {string} data.tagName  - a valid HTML tagName
-   * @param {string} data.content  - a valid HTML tagName
+   * @param {Object} data
+   * @param {String} data.tagName  - a valid HTML tagName
+   * @param {String} data.content  - a string
    */
-  function setData (parentElement, data) {
+  var setData = function (parentElement, data) {
     var newElement = document.createElement(data.tag);
     newElement.innerHTML = data.content;
 
     parentElement.appendChild(newElement);
-  }
+  };
 
   return {
     searchForm  : searchForm,
