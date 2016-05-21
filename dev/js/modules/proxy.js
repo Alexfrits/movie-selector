@@ -1,7 +1,7 @@
 /* global Utils */
 var MovieProxy = (function proxy (Utils) { // eslint-disable-line no-unused-vars
 
-  var queryTries  = 0;  
+  var queryTries  = 0;
   var baseURL     = 'http://www.omdbapi.com/?';
   var queryMethod = {
     title: 't=',
@@ -14,6 +14,7 @@ var MovieProxy = (function proxy (Utils) { // eslint-disable-line no-unused-vars
    * @return {Object}       - returns a json object
    */
   function getMovieByTitle (title) {
+    console.log(title);
     return fetch(baseURL + queryMethod.title + title).then(function(resp) {
       return resp.json();
     }).catch(function(err) {

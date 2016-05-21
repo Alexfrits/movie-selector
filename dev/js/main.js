@@ -4,7 +4,8 @@
 /*  INIT
 ================================================================== */
   window.addEventListener('load', function (e) {
-    Dom.setData(Dom.resultsList, {tag: 'p', content: 'Loading'});
+    Dom.setData(Dom.resultsList, [{tag: 'p', content: 'loading'}]);
+
     MovieProxy.getRandomMovie(function(resp) {
       console.log(resp);
       Dom.setData(Dom.resultsList, [
@@ -18,10 +19,9 @@
 
   Dom.searchForm.addEventListener('submit', function (e) {
     e.preventDefault();
-
     var title = Dom.searchInput.value.toString().trim();
 
-    MovieProxy.getMovieByTitle(title, function(resp) {
+    MovieProxy.getMovieByTitle(title).then(function(resp) {
       console.log(resp);
     });
   });

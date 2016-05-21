@@ -18,27 +18,42 @@ var Dom = (function (Utils) { // eslint-disable-line no-unused-vars
     return newElement;
   }
   /**
-   * Creates a sub-element and appends it to the parentElement
+   * Creates a sub-element and appends it to the rootEl
    * populates a DOM element with the data received from the server
-   * @param {Object} parentElement - either an existing DOM element or a newly created one
-   * @param {Object} data
-   * @param {String} data.tagName  - a valid HTML tagName
-   * @param {String} data.content  - a string
+   * @param {Object | String} rootEl - either an existing DOM element or a newly created one
+   *                                 - String must be a valid HTML tag name
+   * @param {Object} children
+   * @param {String} children.tagName  - a valid HTML tagName
+   * @param {String} children.content  - a string
    */
-  function setData (parentElement, data) {
+  function setData (rootEl, children) {
+    var rootNode;
     var newElement;
-    // clearing the parent node
-    while (parentElement.firstChild) {
-      parentElement.removeChild(parentElement.firstChild);
-    }
-    if(data && Array.isArray(data) ) {
-      data.forEach(function(elem) {
-        newElement = createElem(elem);
-        parentElement.appendChild(newElement);
-      });
+    console.log(children);
+
+    if (typeof rootEl === 'string') {
+      rootNode = document.createElement(rootEl);
     } else {
-      newElement = createElem(data);
-      parentElement.appendChild(newElement);
+      rootNode = rootEl;
+      clearNode(rootEl);
+
+      if(children && Array.isArray(children) ) {
+        children.forEach(function(elem) {
+          newElement = createElem(elem);
+          rootEl.appendChild(newElement);
+        });
+      } else if(typeof children === 'string') {
+        newElement = createElem(children);
+        rootEl.appendChild(newElement);
+      }
+
+    }
+  }
+
+  function clearNode (node) {
+    // clearing the parent node
+    while (node.firstChild) {
+      node.removeChild(node.firstChild);
     }
   }
 
