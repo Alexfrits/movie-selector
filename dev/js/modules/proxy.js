@@ -14,7 +14,6 @@ var MovieProxy = (function proxy (Utils) { // eslint-disable-line no-unused-vars
    * @return {Object}       - returns a json object
    */
   function getMovieByTitle (title) {
-    console.log(title);
     return fetch(baseURL + queryMethod.title + title).then(function(resp) {
       return resp.json();
     }).catch(function(err) {

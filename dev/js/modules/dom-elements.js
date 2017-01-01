@@ -84,10 +84,8 @@ var Dom = (function (Utils) { // eslint-disable-line no-unused-vars
       create('p', {content: content.Plot})
     ];
     childNodes.forEach(function(node) {
-      console.log(node);
       bodyNode.appendChild(node);
     });
-    console.log(bodyNode);
     return bodyNode;
   }
 

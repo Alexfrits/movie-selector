@@ -7,7 +7,6 @@
     // Dom.setData(Dom.resultsList, [{tag: 'p', content: 'loading'}]);
 
     MovieProxy.getRandomMovie(function(resp) {
-      console.log(resp);
       Dom.setResponse(Dom.resultsList, resp);
       // Dom.setData(Dom.resultsList, [
       //   {tag: 'h2', content: resp.Title},
@@ -23,7 +22,6 @@
     var title = Dom.searchInput.value.toString().trim();
 
     MovieProxy.getMovieByTitle(title).then(function(resp) {
-      console.log(resp);
     });
   });
 }(MovieProxy, Dom, Utils));
