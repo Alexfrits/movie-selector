@@ -1,11 +1,9 @@
 {
   "name": "moive-selector",
   "version": "0.0.1",
-  "description": "----",
-  "main": "index.js",
+  "description": "Find a movie to watch tonight",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev:server": "browser-sync start --server dev/ --files \"dev/**/*.html, dev/js/**/*.css, dev/js/**/*.js\""
+    "dev:server": "browser-sync start --server dev/ --files dev/**/*.html, dev/js/**/*.css, dev/js/**/*.js"
   },
   "repository": {
     "type": "git",
@@ -18,8 +16,7 @@
   },
   "homepage": "https://github.com/Alexfrits/movie-selector#readme",
   "devDependencies": {
-    "browser-sync": "^2.11.1",
-    "eslint": "^2.2.0",
-    "eslint-plugin-react": "^4.1.0"
+    "browser-sync": "^2.18.5",
+    "eslint": "^3.12.2"
   }
 }
