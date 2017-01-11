@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Find a movie to watch tonight",
   "scripts": {
-    "dev:server": "browser-sync start --server dev/ --files dev/**/*.html, dev/js/**/*.css, dev/js/**/*.js"
+    "dev:server": "browser-sync start --no-open --server dev/ --files dev/**/*.html, dev/js/**/*.css, dev/js/**/*.js"
   },
   "repository": {
     "type": "git",

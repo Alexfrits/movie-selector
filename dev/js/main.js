@@ -3,18 +3,14 @@
 
 /*  INIT
 ================================================================== */
-  window.addEventListener('load', function (e) {
+  window.addEventListener('DOMContentLoaded', function (e) {
     // Dom.setData(Dom.resultsList, [{tag: 'p', content: 'loading'}]);
-
-    MovieProxy.getRandomMovie(function(resp) {
-      Dom.setResponse(Dom.resultsList, resp);
-      // Dom.setData(Dom.resultsList, [
-      //   {tag: 'h2', content: resp.Title},
-      //   {tag: 'li', content: resp.Year},
-      //   {tag: 'li', content: resp.Runtime},
-      //   {tag: 'li', content: resp.Actors}
-      // ]);
-    });
+    // MovieProxy.getConfig()
+    //   .then(resp => {
+    //     return MovieProxy.getRandomMovie();
+    //   }).then(resp => {
+    //     console.log(resp);
+    //   })
   });
 
   Dom.searchForm.addEventListener('submit', function (e) {

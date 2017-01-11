@@ -1,25 +1,46 @@
-/* global Utils */
-var MovieProxy = (function proxy (Utils) { // eslint-disable-line no-unused-vars
+/* global Utils API_KEY*/
+var MovieProxy = (function proxy (Utils, API_KEY) { // eslint-disable-line no-unused-vars
 
-  var queryTries  = 0;
-  var baseURL     = 'http://www.omdbapi.com/?';
-  var queryMethod = {
-    title: 't=',
-    imdb: 'i='
+  let config = {};
+  var baseURL     = 'https://api.themoviedb.org/3';
+  const queryMethods = {
+    find: 'find',
+    config: 'configuration'
   };
 
-  /**
-   * Getting the movie data from the server
-   * @param  {String} title - the title of the movie
-   * @return {Object}       - returns a json object
-   */
-  function getMovieByTitle (title) {
-    return fetch(baseURL + queryMethod.title + title).then(function(resp) {
-      return resp.json();
-    }).catch(function(err) {
-      return err;
-    });
+  const defaultQueryParams = {
+    api_key: API_KEY.key()
+  };
+  // var queryMethod = {
+  //   title: 't=',
+  //   imdb: 'i='
+  // };
+
+  function createQueryString(queryObject) {
+    return Object.keys(queryObject).reduce((acc, curr, index) => {
+      const separator = index ? '&' : '';
+      return acc.concat(`${separator}${curr}=${queryObject[curr]}`);
+    }, '');
   }
+
+  // /**
+  //  * Getting the movie data from the server
+  //  * @param  {String} title - the title of the movie
+  //  * @return {Object}       - returns a json object
+  //  */
+  // function getMovieByTitle (title) {
+  //   return fetch(baseURL + queryMethod.title + title).then(function(resp) {
+  //     return resp.json();
+  //   }).catch(function(err) {
+  //     return err;
+  //   });
+  // }
+
+function getConfig () {
+  return fetch(`${baseURL}/${queryMethods.config}?${createQueryString(defaultQueryParams)}`)
+    .then(resp => resp.json())
+    .then(resp => config = resp);
+}
 
   /**
    * Getting a movie by its IMDB ID
@@ -27,30 +48,47 @@ var MovieProxy = (function proxy (Utils) { // eslint-disable-line no-unused-vars
    * @return {Object} resp    - the movie object returned by the server
    */
   function getMovieByImdbId (imdbId) {
-    return fetch(baseURL + queryMethod.imdb + imdbId).then(function(resp) {
-      return resp.json();
+    const queryParams = createQueryString(Object.assign(
+      {},
+      defaultQueryParams,
+      {
+        external_source: 'imdb_id',
+        language: 'fr-BE'
+      }
+    ));
+    return fetch(`${baseURL}/${queryMethods.find}/${imdbId}?${queryParams}`).then(function(resp) {
+      const r = resp.json();
+      console.log(r);
+      return r;
     }).catch(function(err) {
       return err;
     });
   }
 
-  function getRandomMovie (callback) {
-    return getMovieByImdbId(Utils.randId()).then(function(resp) {
-      queryTries++;
-      console.log(queryTries);
-      if(resp.Response === 'False') {
-        // while the api doesn't find a movie with the generated ID
-        getRandomMovie(callback);
+
+// TODO: try a more performant implementation.
+// see https://www.themoviedb.org/talk/57e2dd4d92514101c8001fb8
+// 
+  function getRandomMovie (queryTries = 1) {
+    const randomId = Utils.randId();
+    return getMovieByImdbId(randomId).then(function(resp) {
+      console.log(queryTries, randomId);
+      if(Object.keys(resp).some(result => {
+        return resp[result].length > 0;
+      })) {
+        return resp;
       } else {
-        return callback(resp);
+        // while the api doesn't find a movie with the generated ID
+        return getRandomMovie(++queryTries);
       }
     });
   }
 
   return {
-    getMovieByTitle,
+    // getMovieByTitle,
     getRandomMovie,
-    getMovieByImdbId
+    getMovieByImdbId,
+    getConfig
   };
 
-}(Utils));
+}(Utils, API_KEY));
